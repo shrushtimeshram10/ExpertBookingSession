@@ -1,32 +1,47 @@
-##Expert Session Booking System
-A full-stack Real-Time Expert Session Booking System where users can browse experts, view available time slots, and book sessions instantly. Built with React, Node.js, Express, and MongoDB — with Socket.io powering live slot updates.
+# 🚀 Expert Session Booking System
 
-🚀 Tech Stack
-Frontend
+A full-stack **Real-Time Expert Session Booking System** where users can browse experts, view available time slots, and instantly book sessions online.
 
-React (Vite)
-Socket.io Client
+Built using **React**, **Node.js**, **Express**, **MongoDB**, and **Socket.io** for seamless real-time updates.
 
-Backend
+---
 
-Node.js
-Express.js
-MongoDB + Mongoose
-Socket.io
+# ✨ Features
 
+- 🔍 Search experts by name
+- 🗂 Filter experts by category
+- 📄 Paginated expert listing
+- ⏳ Loading and error handling states
+- 📅 View available time slots grouped by date
+- ⚡ Real-time slot updates using Socket.io
+- 🔒 Double booking prevention using MongoDB atomic operations
+- 📝 Booking form with validation
+- 📬 Track bookings by email
+- 📌 Booking status tracking:
+  - Pending
+  - Confirmed
+  - Completed
 
-✨ Features
+---
 
-🔍 Search experts by name and filter by category
-📄 Paginated expert listing with loading and error states
-📅 View available time slots grouped by date on expert detail page
-⚡ Real-time slot updates using Socket.io — slots disable instantly when booked by another user
-📝 Booking form with full validation (name, email, phone, date, time slot, notes)
-🔒 Double booking prevention with race condition handling using MongoDB atomic operations
-📬 View all bookings by email with status tracking (Pending / Confirmed / Completed)
+# 🛠 Tech Stack
 
+## Frontend
+- React (Vite)
+- Socket.io Client
 
-📁 Folder Structure
+## Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- Socket.io
+
+---
+
+# 📁 Folder Structure
+
+```bash
 PINTEREST/
 ├── backend/
 │   ├── src/
@@ -48,51 +63,129 @@ PINTEREST/
 │   ├── index.html
 │   ├── vite.config.ts
 │   └── package.json
+```
 
-⚙️ Getting Started
-Prerequisites
+---
 
-Node.js v18+
-MongoDB (local or Atlas)
+# ⚙️ Getting Started
 
-1. Clone the repository
-bashgit clone https://github.com/yourusername/expert-booking-system.git
+## 📌 Prerequisites
+
+Make sure you have installed:
+
+- Node.js v18+
+- MongoDB (Local or Atlas)
+
+---
+
+# 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/expert-booking-system.git
 cd expert-booking-system
-2. Setup Backend
-bashcd backend
+```
+
+---
+
+# 2️⃣ Setup Backend
+
+```bash
+cd backend
 npm install
-cp .env.example .env
-Fill in your .env:
-envPORT=5000
+```
+
+Create a `.env` file using `.env.example`
+
+```env
+PORT=5000
 MONGO_URI=your_mongodb_connection_string
 CLIENT_URL=http://localhost:5173
-Then run:
-bashnpm run dev
-3. Setup Frontend
-bashcd frontend
+```
+
+Run the backend server:
+
+```bash
+npm run dev
+```
+
+---
+
+# 3️⃣ Setup Frontend
+
+```bash
+cd frontend
 npm install
-cp .env.example .env
-Fill in your .env:
-envVITE_API_URL=http://localhost:5000
-Then run:
-bashnpm run dev
+```
 
-📡 API Endpoints
-MethodEndpointDescriptionGET/expertsGet all experts (pagination + filter)GET/experts/:idGet single expert detailsPOST/bookingsCreate a new bookingPATCH/bookings/:id/statusUpdate booking statusGET/bookings?email=Get bookings by email
+Create a `.env` file using `.env.example`
 
-🔒 Double Booking Prevention
-Bookings are protected against race conditions using MongoDB's atomic findOneAndUpdate with strict conditions. If two users attempt to book the same expert, date, and time slot simultaneously, only one request succeeds and the other receives a clear conflict error.
+```env
+VITE_API_URL=http://localhost:5000
+```
 
-⚡ Real-Time Updates
-Socket.io is used to broadcast slot availability changes across all connected clients. When a booking is made, the server emits a slot-booked event, and all users viewing that expert's detail page see the slot disabled in real time — no page refresh required.
+Run the frontend:
 
-🌐 Deployment
+```bash
+npm run dev
+```
 
-Frontend: Vercel / Netlify
-Backend: Render / Railway
-Database: MongoDB Atlas
+---
 
+# 📡 API Endpoints
 
-📬 Contact
-Made by Shrushti Meshram
-shrushti.meshram@cumminscollege.in
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/experts` | Get all experts |
+| GET | `/experts/:id` | Get single expert details |
+| POST | `/bookings` | Create a new booking |
+| PATCH | `/bookings/:id/status` | Update booking status |
+| GET | `/bookings?email=` | Get bookings by email |
+
+---
+
+# 🔒 Double Booking Prevention
+
+The system prevents double bookings using **MongoDB atomic operations** with strict conditions.
+
+If two users try booking the same expert, date, and slot simultaneously:
+
+- ✅ One booking succeeds
+- ❌ The other receives a conflict error
+
+This ensures complete race-condition safety.
+
+---
+
+# ⚡ Real-Time Updates
+
+Using **Socket.io**, slot availability updates instantly across all connected clients.
+
+When a booking is made:
+
+- The server emits a `slot-booked` event
+- All users viewing that expert page instantly see the slot disabled
+- No page refresh required
+
+---
+
+# 🌐 Deployment
+
+| Service | Platform |
+|---------|----------|
+| Frontend | Vercel / Netlify |
+| Backend | Render / Railway |
+| Database | MongoDB Atlas |
+
+---
+
+# 📬 Contact
+
+## 👩‍💻 Made by Shrushti Meshram
+
+📧 shrushti.meshram@cumminscollege.in
+
+---
+
+# ⭐ Support
+
+If you like this project, consider giving it a ⭐ on GitHub!
